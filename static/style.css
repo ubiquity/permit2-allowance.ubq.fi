@@ -166,6 +166,10 @@ header {
 }
 
 .success-close-modal {
+  position: relative;
+  top: 0;
+  right: 0;
+  padding: 0;
   background: none;
   border: none;
   cursor: pointer;
@@ -184,6 +188,8 @@ header {
 }
 
 .success-message {
+  display: flex;
+  flex-direction: column;
   max-height: 400px;
   white-space: pre-wrap;
   text-overflow: ellipsis;
@@ -193,6 +199,7 @@ header {
 .tx-hash {
   color: #fff;
   text-decoration: underline;
+  padding-right: 30px;
 }
 
 /* Content Area Styles */
