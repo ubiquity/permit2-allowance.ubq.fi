@@ -33,6 +33,7 @@ export const providersUrl: { [key: string]: string } = {
   324: "https://mainnet.era.zksync.io",
   43114: "https://rpc.ankr.com/avalanche",
   480: "https://rpc.worldchain.network",
+  31337: "http://127.0.0.1:8545",
 };
 
 export const explorersUrl: { [key: string]: string } = {
@@ -47,6 +48,7 @@ export const explorersUrl: { [key: string]: string } = {
   324: "https://explorer.zksync.io",
   43114: "https://snowtrace.io",
   480: "https://explorer.worldchain.network",
+  31337: "http://127.0.0.1:8545",
 };
 
 let networks: [AppKitNetwork, ...AppKitNetwork[]];

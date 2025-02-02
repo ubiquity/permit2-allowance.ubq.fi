@@ -7,6 +7,9 @@ const tokensByNetwork: { [key: number]: { [token: string]: string } } = {
   100: {
     UUSD: "0xc6ed4f520f6a4e4dc27273509239b7f8a68d2068",
   },
+  31337: {
+    UUSD: "0x0f644658510c95cb46955e55d7ba9dda9e9fbec6",
+  },
 };
 
 const tokenSelector = document.querySelector(".token-selector") as HTMLInputElement;

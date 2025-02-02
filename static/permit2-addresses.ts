@@ -1,5 +1,6 @@
 export function getPermit2Address(networkId: number): string | undefined {
   switch (networkId) {
+    case 31337:
     case 100:
     case 1:
     case 42161:
