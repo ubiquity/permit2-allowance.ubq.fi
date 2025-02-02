@@ -266,16 +266,17 @@ header {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 40px 0;
+  padding-bottom: 40px;
+  padding-top: 24px;
 }
 
 .current-allowance {
-  padding: 10px;
   font-size: 1.1rem;
-  color: #ddd;
+  color: #808080;
 }
 
 .approve-selectors {
+  padding-top: 8px;
   width: 100%;
   display: flex;
   justify-content: left;

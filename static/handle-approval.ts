@@ -6,13 +6,14 @@ import { ethers } from "ethers";
 
 const amountInput = document.querySelector(".amount-selector") as HTMLInputElement;
 const addressInput = document.querySelector(".token-selector") as HTMLInputElement;
-const currentAllowanceAmount = document.querySelector(".current-allowance-amount") as HTMLSpanElement;
+const currentAllowanceAmount = document.querySelector(".current-allowance") as HTMLSpanElement;
 const approveButton = document.querySelector(".approve-button") as HTMLButtonElement;
 const revokeButton = document.querySelector(".revoke-button") as HTMLButtonElement;
 
 const red = "1px solid red";
 const green = "1px solid #5af55a";
 const grey = "1px solid rgba(255, 255, 255, 0.1)";
+const loadingText = "Loading...";
 
 function isValidAddress(): boolean {
   //reset color
@@ -42,7 +43,6 @@ function isValidAmount(): boolean {
 }
 
 export async function isApprovalButtonsValid() {
-  currentAllowanceAmount.textContent = "...";
   const isConnected = appState.getIsConnectedState();
   const isAddressValid = isValidAddress();
   const isAmountValid = isValidAmount();
@@ -68,6 +68,8 @@ async function getCurrentAllowance(): Promise<boolean> {
     return false;
   }
 
+  currentAllowanceAmount.textContent = loadingText;
+
   const tokenAddress = addressInput.value;
   const permit2Address = getPermit2Address(appState.getChainId() as number);
   const userAddress = appState.getAddress();
@@ -78,10 +80,10 @@ async function getCurrentAllowance(): Promise<boolean> {
     const decimals = await tokenContract.decimals();
     const allowance = await tokenContract.allowance(userAddress, permit2Address);
     const formattedAllowance = ethers.utils.formatUnits(allowance, decimals);
-    currentAllowanceAmount.textContent = formattedAllowance + " " + symbol;
+    currentAllowanceAmount.textContent = "Current Allowance: " + formattedAllowance + " " + symbol;
     return true;
   } catch (error) {
-    currentAllowanceAmount.textContent = "not a valid token";
+    currentAllowanceAmount.textContent = "Not a valid token.";
     return false;
   }
 }
@@ -99,7 +101,7 @@ async function onApproveClick() {
 
   const originalText = approveButton.textContent;
   try {
-    approveButton.textContent = "Loading...";
+    approveButton.textContent = loadingText;
     approveButton.disabled = true;
     revokeButton.disabled = true; // disable revoke as well to prevent conflicting actions
 
@@ -137,7 +139,7 @@ async function onRevokeClick() {
 
   const originalText = revokeButton.textContent;
   try {
-    revokeButton.textContent = "Loading...";
+    revokeButton.textContent = loadingText;
     revokeButton.disabled = true;
     approveButton.disabled = true; // disable approve as well
 
