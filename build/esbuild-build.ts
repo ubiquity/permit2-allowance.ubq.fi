@@ -1,17 +1,14 @@
-import { config } from "dotenv";
 import esbuild, { BuildOptions } from "esbuild";
-config();
 
-const ENTRY_POINTS = {
-  typescript: ["static/main.ts"],
-  // css: ["static/style.css"],
-};
+const typescriptEntries = ["static/main.ts"];
+const cssEntries = ["static/style.css"];
+const entries = [...typescriptEntries, ...cssEntries];
 
 const DATA_URL_LOADERS = [".png", ".woff", ".woff2", ".eot", ".ttf", ".svg"];
 
 export const esbuildOptions: BuildOptions = {
   sourcemap: true,
-  entryPoints: [...ENTRY_POINTS.typescript /* ...ENTRY_POINTS.css */],
+  entryPoints: entries,
   bundle: true,
   minify: false,
   loader: Object.fromEntries(DATA_URL_LOADERS.map((ext) => [ext, "dataurl"])),
@@ -29,21 +26,3 @@ async function runBuild() {
 }
 
 void runBuild();
-
-// function createEnvDefines(environmentVariables: string[], generatedAtBuild: Record<string, unknown>): Record<string, string> {
-//   const defines: Record<string, string> = {};
-//   for (const name of environmentVariables) {
-//     const envVar = process.env[name];
-//     if (envVar !== undefined) {
-//       defines[name] = JSON.stringify(envVar);
-//     } else {
-//       throw new Error(`Missing environment variable: ${name}`);
-//     }
-//   }
-//   for (const key in generatedAtBuild) {
-//     if (Object.prototype.hasOwnProperty.call(generatedAtBuild, key)) {
-//       defines[key] = JSON.stringify(generatedAtBuild[key]);
-//     }
-//   }
-//   return defines;
-// }
