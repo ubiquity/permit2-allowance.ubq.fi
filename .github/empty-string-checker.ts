@@ -11,7 +11,7 @@ const excludedFiles: string[] = process.env.EXCLUDED_FILES
       .map((file) => file.trim())
       .filter(Boolean)
   : [];
-excludedFiles.push("src/static/abis.ts");
+excludedFiles.push("static/abis.ts");
 
 if (!token || !owner || !repo || pullNumber === "0" || !baseRef) {
   core.setFailed("Missing required environment variables.");

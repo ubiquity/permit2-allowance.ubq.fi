@@ -21,7 +21,7 @@ export function updateTokenDropdown() {
   const tokens = tokensByNetwork[networkId] || {};
 
   if (tokenSelector && tokenOptions) {
-    tokenOptions.innerHTML = ""; // Clear existing options
+    tokenOptions.innerHTML = "<option value=''>Select a token</option>"; // Clear existing options and add default option
 
     for (const [key, value] of Object.entries(tokens)) {
       const option = document.createElement("option");

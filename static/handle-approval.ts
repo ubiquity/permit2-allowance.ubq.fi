@@ -21,7 +21,7 @@ function isValidAddress(): boolean {
 
   const isValid = /^0x[a-fA-F0-9]{40}$/.test(addressInput.value);
 
-  if (!isValid && addressInput.value !== "") {
+  if (!isValid && addressInput.value.length !== 0) {
     addressInput.style.border = red;
   }
 
@@ -33,7 +33,7 @@ function isValidAmount(): boolean {
 
   if (isValid) {
     amountInput.style.border = green;
-  } else if (amountInput.value === "") {
+  } else if (amountInput.value.length === 0) {
     amountInput.style.border = grey;
   } else {
     amountInput.style.border = red;
