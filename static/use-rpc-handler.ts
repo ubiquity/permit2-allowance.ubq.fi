@@ -10,8 +10,8 @@ export function convertToNetworkId(networkId: number | string): NetworkId {
 }
 
 export function useHandler(networkId: number) {
-    const isDev = networkId === 31337;
-    const config: HandlerConstructorConfig = {
+  const isDev = networkId === 31337;
+  const config: HandlerConstructorConfig = {
     networkId: convertToNetworkId(networkId),
     autoStorage: true,
     cacheRefreshCycles: 5,
@@ -39,7 +39,6 @@ export async function useRpcHandler(networkId: number) {
   try {
     const handler = useHandler(networkId);
     const provider = await handler.getFastestRpcProvider();
-    console.log("found fastest provider: provider");
     const url = provider.connection.url;
     if (!url) {
       throw new Error("Provider URL not set");
