@@ -1,5 +1,5 @@
 // these are used as backups in case @ubiquity-dao/rpc-handler fails to fetch the fastest provider
-export const providersUrl: { [key: string]: string } = {
+export const providersUrl: { [key: number]: string } = {
   100: "https://rpc.gnosischain.com",
   1: "https://eth.llamarpc.com",
   137: "https://polygon.llamarpc.com",
@@ -14,7 +14,7 @@ export const providersUrl: { [key: string]: string } = {
   31337: "http://127.0.0.1:8545",
 };
 
-export const explorersUrl: { [key: string]: string } = {
+export const explorersUrl: { [key: number]: string } = {
   100: "https://gnosisscan.io",
   1: "https://etherscan.io",
   137: "https://polygonscan.com",
