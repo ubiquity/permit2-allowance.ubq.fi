@@ -20,7 +20,7 @@ const projectId = "415760038f8e330de4868120be3205b8";
 const metadata = {
   name: "Ubiquity Allowance",
   description: "Allow funding in Ubiquity",
-  url: "https://onboard.ubq.fi",
+  url: "https://permit2-allowance.ubq.fi",
   icons: ["https://avatars.githubusercontent.com/u/76412717"],
 };
 
