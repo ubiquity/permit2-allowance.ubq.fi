@@ -18,9 +18,9 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          install-command: bun install
-          build: bun run build
-          start: bun run start
+          install-command: yarn install
+          build: yarn run build
+          start: yarn run start
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
