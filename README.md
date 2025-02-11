@@ -14,13 +14,13 @@ This template repository includes support for the following:
 To test with Cypress Studio UI, run
 
 ```shell
-yarn cy:open
+bun cy:open
 ```
 
 Otherwise, to simply run the tests through the console, run
 
 ```shell
-yarn cy:run
+bun cy:run
 ```
 
 ### Jest
@@ -28,7 +28,7 @@ yarn cy:run
 To start Jest tests, run
 
 ```shell
-yarn test
+bun test
 ```
 
 ## Sync any repository to latest `ts-template`
