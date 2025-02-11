@@ -6,7 +6,7 @@ const config: KnipConfig = {
   ignore: ["src/types/config.ts", "**/__mocks__/**", "**/__fixtures__/**", "eslint.config.mjs"],
   ignoreExportsUsedInFile: true,
   // eslint can also be safely ignored as per the docs: https://knip.dev/guides/handling-issues#eslint--jest
-  ignoreDependencies: ["dotenv", "@mswjs/data"],
+  ignoreDependencies: ["dotenv", "@mswjs/data", "@ubiquity-dao/rpc-handler"],
   ignoreBinaries: ["cypress/scripts/anvil.sh"],
   eslint: true,
 };
