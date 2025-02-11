@@ -83,8 +83,8 @@ async function getCurrentAllowance(): Promise<boolean> {
     currentAllowanceAmount.textContent = "Current Allowance: " + formattedAllowance + " " + symbol;
     return true;
   } catch (error) {
-    console.log("error", error)
-    if(error instanceof Error && error.message.includes("bad address checksum")) {
+    console.log("error", error);
+    if (error instanceof Error && error.message.includes("bad address checksum")) {
       currentAllowanceAmount.textContent = "Invalid token address.";
     } else if (error instanceof Error && error.message.includes("CORS")) {
       currentAllowanceAmount.textContent = "Our RPC is busy, please try again later.";
