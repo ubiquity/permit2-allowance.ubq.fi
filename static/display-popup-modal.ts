@@ -34,7 +34,7 @@ export function renderSuccessModal(transactionHash: string) {
   const successMessageElement = document.getElementById("success-message");
 
   if (successMessageElement) {
-    successMessageElement.innerHTML = `You've successfully signed the transaction. Your allowance balance should be updated in a few blocks.<br><br>transaction hash: <span class="tx-hash">${transactionHash}</span>`;
+    successMessageElement.innerHTML = `You've successfully signed the transaction. Your allowance balance should be updated in a few blocks.<br><br>Transaction hash: <span class="tx-hash">${transactionHash}</span>`;
     const chainId = appState.getChainId();
     const explorerUrl = chainId !== undefined ? explorersUrl[chainId] : "https://etherscan.io";
     const txLink = document.createElement("a");
