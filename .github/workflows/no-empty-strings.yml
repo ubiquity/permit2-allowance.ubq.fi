@@ -28,7 +28,7 @@ jobs:
           yarn add tsx simple-git
       - name: Check for Empty Strings
         run: |
-          yarn .github/empty-string-checker.ts
+          yarn tsx .github/empty-string-checker.ts
         env:
           GITHUB_TOKEN: ${{ steps.get_installation_token.outputs.token || secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
