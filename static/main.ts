@@ -82,16 +82,19 @@ async function initializeProviderAndSigner() {
 
 function handleNetworkSwitch() {
   // network change listener
-  appState.subscribeCaipNetworkChange(async (newState?: { id: string | number; name: string }) => {
-    if (newState) {
-      await initializeProviderAndSigner();
-      console.log(`Network switched to ${newState.name} (${newState.id})`);
-    }
+  appState.subscribeCaipNetworkChange((newState?: { id: string | number; name: string }) => {
+    void (async () => {
+      if (newState) {
+        await initializeProviderAndSigner();
+        console.log(`Network switched to ${newState.name} (${newState.id})`);
+      }
+    })();
   });
 
-  // wallet connection listener
-  appState.subscribeWalletInfo(async () => {
-    await initializeProviderAndSigner();
+  appState.subscribeWalletInfo(() => {
+    void (async () => {
+      await initializeProviderAndSigner();
+    })();
   });
 }
 

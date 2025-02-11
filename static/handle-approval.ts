@@ -94,8 +94,12 @@ async function getCurrentAllowance(): Promise<boolean> {
 }
 
 export function setupApproveButton() {
-  approveButton.removeEventListener("click", () => onApproveClick); // ensure no duplicate listeners
-  approveButton.addEventListener("click", () => onApproveClick);
+  approveButton.removeEventListener("click", () => {
+    void onApproveClick();
+  }); // ensure no duplicate listeners
+  approveButton.addEventListener("click", () => {
+    void onApproveClick();
+  });
 }
 
 async function onApproveClick() {
@@ -132,8 +136,12 @@ async function onApproveClick() {
 }
 
 export function setupRevokeButton() {
-  revokeButton.removeEventListener("click", () => onRevokeClick); // ensure no duplicate listeners
-  revokeButton.addEventListener("click", () => onRevokeClick);
+  revokeButton.removeEventListener("click", () => {
+    void onRevokeClick();
+  }); // ensure no duplicate listeners
+  revokeButton.addEventListener("click", () => {
+    void onRevokeClick();
+  });
 }
 
 async function onRevokeClick() {
@@ -168,6 +176,10 @@ async function onRevokeClick() {
 }
 
 export async function setupButtonValidityListener() {
-  amountInput.addEventListener("change", () => isApprovalButtonsValid);
-  addressInput.addEventListener("change", () => isApprovalButtonsValid);
+  amountInput.addEventListener("change", () => {
+    void isApprovalButtonsValid();
+  });
+  addressInput.addEventListener("change", () => {
+    void isApprovalButtonsValid();
+  });
 }
