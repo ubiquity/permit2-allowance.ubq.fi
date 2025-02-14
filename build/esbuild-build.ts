@@ -1,6 +1,6 @@
 import esbuild, { BuildOptions } from "esbuild";
 
-const typescriptEntries = ["src/main.ts"];
+const typescriptEntries = ["static/main.ts"];
 const cssEntries = ["static/style.css"];
 const entries = [...typescriptEntries, ...cssEntries];
 

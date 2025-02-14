@@ -23,7 +23,7 @@ jobs:
 
       - name: Build
         run: |
-          yarn
+          yarn install
           yarn build
 
       - name: Upload build artifact
