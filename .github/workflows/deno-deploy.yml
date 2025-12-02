@@ -9,8 +9,6 @@ jobs:
   deploy:
     uses: ubiquity/deno-deploy-workflow/.github/workflows/deno-deploy-reusable.yml@main
     secrets: inherit
-    env:
-      STATIC_DIR: static/dist
     with:
       project: permit2-allowance-ubq-fi
       preview_project: permit2-allowance-ubq-fi-preview
@@ -19,15 +17,12 @@ jobs:
         bun install
       build_command: |
         bun run build
-      env_var_keys: |
-        STATIC_DIR
       bun_version: "1.1.x"
       deno_version: v2.x
       deployctl_version: "1.12.0"
       prod_branch: development
       include: |
         static/**
-        build/**
       exclude: |
         node_modules
         tests
