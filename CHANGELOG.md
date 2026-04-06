@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/ubiquity/permit2-allowance.ubq.fi/compare/v1.0.0...v1.1.0) (2026-04-06)
+
+
+### Features
+
+* update deploy workflow to use dynamic debug paths ([ba10af1](https://github.com/ubiquity/permit2-allowance.ubq.fi/commit/ba10af15f3d331b942a04287b52eef77216438df))
+
+
+### Bug Fixes
+
+* **ci:** keep static/dist in deploy ([f67c2d1](https://github.com/ubiquity/permit2-allowance.ubq.fi/commit/f67c2d13609141a0a8f42f66440c8f9a0151aa28))
+* standardize deno deploy workflow and serve.ts ([467fec9](https://github.com/ubiquity/permit2-allowance.ubq.fi/commit/467fec9034b00f70a5c01af69910f95fc86dc765))
+* update favicon assets for higher fidelity ([b949682](https://github.com/ubiquity/permit2-allowance.ubq.fi/commit/b949682fdaeba9feff180490eacbf7b706a12198))
+
 ## 1.0.0 (2025-11-24)
 
 
