@@ -1,5 +1,5 @@
 name: Knip
-# cspell:words Knip knip corepack
+# cspell:words Knip knip
 
 on:
   pull_request:
@@ -11,22 +11,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Enable corepack
-        run: corepack enable
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 20.19.0
+          bun-version: 1.3.4
 
       - name: Install toolchain
-        run: yarn install
+        run: bun install --frozen-lockfile
 
       - name: Store PR number
         run: echo ${{ github.event.number }} > pr-number.txt
 
       - name: Run Knip
-        run: yarn run knip || yarn run knip --reporter json > knip-results.json
+        run: bun run knip || bun run knip --reporter json > knip-results.json
 
       - name: Upload knip result
         if: failure()
