@@ -1,5 +1,5 @@
 name: Deno Deploy
-# cspell:words denoland pipefail SUPABASE binfmt
+# cspell:words denoland pipefail SUPABASE binfmt sha256sum
 
 on:
   push:
@@ -57,12 +57,33 @@ jobs:
             printf '%s' "$value"
           }
 
+          branch_suffix() {
+            local ref_name="$1"
+            local budget="$2"
+            local normalized hash prefix_budget prefix
+
+            hash="$(printf '%s' "$ref_name" | sha256sum | cut -c1-8)"
+            if [ "$budget" -le 8 ]; then
+              trim_slug "$hash" "$budget"
+              return
+            fi
+
+            normalized="$(slugify "$ref_name")"
+            if [ -z "$normalized" ]; then
+              normalized="branch"
+            fi
+
+            prefix_budget=$((budget - 9))
+            prefix="$(trim_slug "$normalized" "$prefix_budget")"
+            if [ -z "$prefix" ]; then
+              prefix="branch"
+            fi
+
+            printf '%s-%s' "$prefix" "$hash"
+          }
+
           app_slug="$BASE_APP"
           if [ "$REF_NAME" != "$DEFAULT_BRANCH" ]; then
-            suffix="$(slugify "$REF_NAME")"
-            if [ -z "$suffix" ]; then
-              suffix="branch"
-            fi
             suffix_budget=$((32 - ${#BASE_APP} - 1))
             if [ "$suffix_budget" -gt 25 ]; then
               suffix_budget=25
@@ -70,7 +91,7 @@ jobs:
             if [ "$suffix_budget" -lt 1 ]; then
               suffix_budget=1
             fi
-            suffix="$(trim_slug "$suffix" "$suffix_budget")"
+            suffix="$(branch_suffix "$REF_NAME" "$suffix_budget")"
             if [ -z "$suffix" ]; then
               suffix="b"
             fi
@@ -136,7 +157,7 @@ jobs:
             --build-manifest=false
 
   delete-branch-app:
-    if: github.event_name == 'delete'
+    if: github.event_name == 'delete' && github.event.ref_type == 'branch'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -177,12 +198,33 @@ jobs:
             printf '%s' "$value"
           }
 
+          branch_suffix() {
+            local ref_name="$1"
+            local budget="$2"
+            local normalized hash prefix_budget prefix
+
+            hash="$(printf '%s' "$ref_name" | sha256sum | cut -c1-8)"
+            if [ "$budget" -le 8 ]; then
+              trim_slug "$hash" "$budget"
+              return
+            fi
+
+            normalized="$(slugify "$ref_name")"
+            if [ -z "$normalized" ]; then
+              normalized="branch"
+            fi
+
+            prefix_budget=$((budget - 9))
+            prefix="$(trim_slug "$normalized" "$prefix_budget")"
+            if [ -z "$prefix" ]; then
+              prefix="branch"
+            fi
+
+            printf '%s-%s' "$prefix" "$hash"
+          }
+
           app_slug="$BASE_APP"
           if [ "$DELETED_REF" != "$DEFAULT_BRANCH" ]; then
-            suffix="$(slugify "$DELETED_REF")"
-            if [ -z "$suffix" ]; then
-              suffix="branch"
-            fi
             suffix_budget=$((32 - ${#BASE_APP} - 1))
             if [ "$suffix_budget" -gt 25 ]; then
               suffix_budget=25
@@ -190,7 +232,7 @@ jobs:
             if [ "$suffix_budget" -lt 1 ]; then
               suffix_budget=1
             fi
-            suffix="$(trim_slug "$suffix" "$suffix_budget")"
+            suffix="$(branch_suffix "$DELETED_REF" "$suffix_budget")"
             if [ -z "$suffix" ]; then
               suffix="b"
             fi
