@@ -1,6 +1,6 @@
 import { RPCHandler, HandlerConstructorConfig, NetworkId } from "@ubiquity-dao/rpc-handler";
+import { providers } from "ethers";
 import { providersUrl } from "./constants";
-import { JsonRpcProvider } from "@ethersproject/providers";
 
 export function convertToNetworkId(networkId: number | string): NetworkId {
   if (typeof networkId === "string") {
@@ -46,6 +46,6 @@ export async function useRpcHandler(networkId: number) {
     return provider;
   } catch (e) {
     console.log(`RpcHandler is having issues. Error: ${e} \nUsing backup rpc.`);
-    return new JsonRpcProvider({ url: providersUrl[networkId], skipFetchSetup: true });
+    return new providers.JsonRpcProvider({ url: providersUrl[networkId], skipFetchSetup: true });
   }
 }
