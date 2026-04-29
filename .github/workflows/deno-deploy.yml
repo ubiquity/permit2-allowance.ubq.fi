@@ -13,8 +13,14 @@ jobs:
       project: permit2-allowance-ubq-fi
       deploy_platform: deno2
       entrypoint: serve.ts
+      root: .deploy-root
       install_command: deno install
-      build_command: deno task build
+      build_command: |
+        deno task build
+        rm -rf .deploy-root
+        mkdir -p .deploy-root/static
+        cp -R static/. .deploy-root/static/
+        cp serve.ts deno.json deno.lock .deploy-root/
       build_env: |
         SUPABASE_URL=$SUPABASE_URL
         SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY
